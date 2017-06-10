@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+<!--
+    1. A Vue instance accepts an options object that allows us to manipulate html and add reactivity through various Vue features.
+    2. A Vue DIRECTIVE follows the v-pattern and allows us to add dynamic attributes to elements of the html
+    3. The v-if directive accomplishes conditional rednering.
+    4. The v-for directive creates dynamic lists by creating a for-loop
+    5. V-on allows interactivity by binding instance methods to the click handler of elements
+    6. V-model creates two-way data binding between form input and app state
+
+
+    v-for
+    components
+    v-model
+    lifecycle hooks
+-->
+
+    <!-- V-if -->
+    <div class="" id="app-if">
+
+      <p v-if="show">
+        {{message}}
+      </p>
+
+    </div>
+
+
+        <script type="text/javascript">
+
+          // V-if
+          var appIf = new Vue({
+            el: '#app-if',
+            data: {
+              message: "hello, vue world!",
+              show: true
+            }
+          });
+
+          </script>
+
+
+
+
+
+    <!-- V-for -->
+    <div class="" id="app-for">
+
+      <ul>
+        <li v-for="todo in todos">
+          {{todo.text}}
+        </li>
+      </ul>
+
+    </div>
+
+
+        <script type="text/javascript">
+
+        // V-for
+        var appFor = new Vue({
+          el: '#app-for',
+          data: {
+            todos: [
+              {text: 'launch emails'},
+              {text: 'finish eC QA'},
+              {text: 'review portal'}
+            ]
+          }
+        });
+
+        </script>
+
+
+    <!-- V-for -->
+    <div class="" id="app-on">
+      <p>
+        <p>
+          {{message}}
+        </p>
+        <button type="button" name="button" v-on:click="reverseMessage">Reverse message</button>
+      </p>
+    </div>
+
+
+        <script type="text/javascript">
+
+        // V-on
+        var appOn = new Vue({
+          el: '#app-on',
+          data: {
+            message: "Hello, Vue World!!"
+          },
+          methods: {
+            reverseMessage: function() {
+              this.message = this.message.split('').reverse().join('')
+            }
+          }
+        });
+
+        </script>
+
+
+
+    <!-- V-model -->
+    <div class="" id="app-model">
+      <p>
+        {{message}}
+      </p>
+      <input type="text" name="name" value="" v-model="message">
+    </div>
+
+        <script type="text/javascript">
+
+
+              // V-model
+              var appModel = new Vue({
+                el: '#app-model',
+                data: {
+                  message: 'Vue models!'
+                }
+              })
+
+        </script>
+
+
+
+    <!--  Components -->
+
+    <div id="app-7">
+      <ol>
+        <todo-item
+          v-for="item in groceryList"
+          v-bind:todo="item"
+          v-bind:key="item.id">
+        </todo-item>
+      </ol>
+      </div>
+
+
+      <script type="text/javascript">
+
+      Vue.component('todo-item', {
+          props: ['todo'],
+          template: '<li>{{ todo.text }}</li>'
+        })
+
+        var app7 = new Vue({
+          el: '#app-7',
+          data: {
+            groceryList: [
+              { id: 0, text: 'Vegetables' },
+              { id: 1, text: 'Cheese' },
+              { id: 2, text: 'Whatever else humans are supposed to eat' }
+            ]
+          }
+        })
+
+      </script>
+
+
+</div>
+
+
+  </body>
+</html>
